@@ -7,7 +7,7 @@
   <body>
     <?php
 
-class Animal
+class Animal implements Singable
 {
     protected $animal;
     protected $fev_food;
@@ -80,6 +80,11 @@ class Animal
     {
         return $this->name." Says ".$this->sound. " give me some ". $this->fev_food ." my id is ". $this->id." total animals = ".Animal::$num_of_animals."<br><br>";
     }
+
+    public function sing()
+    {
+        echo $this->name."Sings 'Ghawwwww'<br/>";
+    }
 }
 
 
@@ -90,6 +95,15 @@ class Dog extends Animal
     {
         echo $this->name ." runs like crazy <br/>";
     }
+    public function sing()
+    {
+        echo $this->name."Sings 'garr garr garrr'<br/>";
+    }
+}
+
+interface Singable
+{
+    public function sing();
 }
 
 
@@ -119,7 +133,33 @@ $animal_two->what_is_good();
 
 echo $animal_one;
 
+$animal_one->sing();
+
+function make_them_sing(Singable $singing_animal)
+{
+    $singing_animal->sing();
+}
+
+make_them_sing($animal_one);
+make_them_sing($animal_two);
+
+
+
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </body>
 </html>
